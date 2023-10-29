@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-sample-app-deployment
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: k8s-sample-app
+  template:
+    metadata:
+      labels:
+        app: k8s-sample-app
+    spec:
+      containers:
+        - name: k8s-sample-app
+          image: k8s-sample-app
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          env:
+            - name: CONFIG_1
+              valueFrom:
+                configMapKeyRef:
+                  name: k8s-sample-app-config
+                  key: config_1
+            - name: CONFIG_2
+              valueFrom:
+                configMapKeyRef:
+                  name: k8s-sample-app-config
+                  key: config_2
+            - name: CONFIG_3
+              valueFrom:
+                configMapKeyRef:
+                  name: k8s-sample-app-config
+                  key: config_3

@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: k8s-sample-app-config
+data:
+  config_1: config_1_value
+  config_2: config_2_value
+  config_3: config_3_value
